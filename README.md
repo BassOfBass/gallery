@@ -16,7 +16,7 @@ gallery [DIRECTORIES...]
 ```
 docker pull shivakar/gallery
 
-docker run --detach -p 8080:8080 -v PATH/TO/ALBUMS:/mnt/albums shivakar/gallery gallery /mnt/albums/*
+docker run --detach --rm --name gallery -p 8080:8080 -v PATH/TO/ALBUMS:/mnt/albums shivakar/gallery /bin/bash -c "gallery /mnt/albums/*"
 ```
 
 ## References
