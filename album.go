@@ -38,6 +38,7 @@ func NewAlbum(d string) (Album, error) {
 		// If the file is an allowed file extension then include it
 		for _, e := range AllowedExtensions {
 			if strings.HasSuffix(strings.ToLower(info.Name()), e) {
+
 				thumb := fmt.Sprintf("%s_thumb%s", strings.TrimSuffix(path, e), e)
 				f, err := os.Open(path)
 				if err != nil {
@@ -57,7 +58,6 @@ func NewAlbum(d string) (Album, error) {
 					Height:        ic.Height,
 				}
 				a.Images = append(a.Images, id)
-				break
 			}
 		}
 		return nil
@@ -77,6 +77,7 @@ func genThumbnails(a Album) error {
 	for _, img := range a.Images {
 		err := CreateThumbnail(img.Path, img.ThumbnailPath, false)
 		if err != nil {
+			continue
 			return fmt.Errorf("error creating thumbnail: %v", err)
 		}
 	}

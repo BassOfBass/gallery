@@ -49,7 +49,7 @@ func CreateThumbnail(fpath, tpath string, overwrite bool) error {
 	case "gif":
 		err = gif.Encode(out, t, nil)
 	case "jpeg":
-		err = jpeg.Encode(out, t, nil)
+		err = jpeg.Encode(out, t, &jpeg.Options{Quality: 10})
 	case "png":
 		err = png.Encode(out, t)
 	default:
